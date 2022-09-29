@@ -5,6 +5,9 @@ import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
 import TwitterProvider from "next-auth/providers/twitter";
 import Auth0Provider from "next-auth/providers/auth0";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "../../../lib/";
+const prisma = new PrismaClient();
 // import AppleProvider from "next-auth/providers/apple"
 // import EmailProvider from "next-auth/providers/email"
 
@@ -12,6 +15,8 @@ import Auth0Provider from "next-auth/providers/auth0";
 // https://next-auth.js.org/configuration/options
 export const authOptions: NextAuthOptions = {
   // https://next-auth.js.org/configuration/providers/oauth
+
+  adapter: PrismaAdapter(prisma),
   providers: [
     // EmailProvider({
     //   server: process.env.EMAIL_SERVER,
